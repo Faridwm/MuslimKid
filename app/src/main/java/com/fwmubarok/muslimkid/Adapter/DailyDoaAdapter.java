@@ -35,6 +35,12 @@ public class DailyDoaAdapter extends RecyclerView.Adapter<DailyDoaAdapter.ListVi
     @Override
     public void onBindViewHolder(@NonNull DailyDoaAdapter.ListViewHolder holder, int position) {
         holder.tv_judul_doa.setText(doas.get(position).getTitle());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onDailyDoaListener.OnDailyDoaClick(position);
+            }
+        });
     }
 
     @Override
@@ -53,7 +59,6 @@ public class DailyDoaAdapter extends RecyclerView.Adapter<DailyDoaAdapter.ListVi
 
             this.onDailyDoaListener = onDailyDoaListener;
         }
-
 
         @Override
         public void onClick(View v) {

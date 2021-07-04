@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MuslimKid">
-        <activity android:name=".ReadIqraActivity"></activity>
+        <activity android:name=".ReadDoaActivity"></activity>
+        <activity android:name=".ReadIqraActivity" />
         <activity android:name=".DoaMenuActivity" />
         <activity android:name=".IqraMenuActivity" />
         <activity android:name=".MainActivity">
