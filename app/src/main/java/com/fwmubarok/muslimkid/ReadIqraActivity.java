@@ -31,7 +31,7 @@ public class ReadIqraActivity extends AppCompatActivity {
         loading_bar.setVisibility(View.VISIBLE);
 
         wv_pdf.getSettings().setJavaScriptEnabled(true);
-        wv_pdf.getSettings().setAppCacheMaxSize( 10 * 1024 * 1024 );
+//        wv_pdf.getSettings().setAppCacheMaxSize( 10 * 1024 * 1024 );
         wv_pdf.getSettings().setAppCacheEnabled(true);
 
         String url = "";
