@@ -35,7 +35,7 @@ public class DoaMenuActivity extends AppCompatActivity implements DailyDoaAdapte
 
     private MuslimApiInterface muslimApiInterface;
 
-//    private ConstraintLayout layout_success, layout_failed;
+    private ConstraintLayout layout_success, layout_failed;
 
     private RecyclerView rv_daily_doa;
     private RecyclerView.LayoutManager layoutManager;
@@ -46,14 +46,12 @@ public class DoaMenuActivity extends AppCompatActivity implements DailyDoaAdapte
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-//        layout_success = findViewById(R.id.success_get_doa_data);
-//        layout_success.setVisibility(View.GONE);
-//        layout_failed = findViewById(R.id.failed_get_doa_data);
-//        layout_failed.setVisibility(View.VISIBLE);
-
-
         setContentView(R.layout.activity_doa_menu);
+
+        layout_success = findViewById(R.id.layout_get_data);
+        layout_success.setVisibility(View.GONE);
+        layout_failed = findViewById(R.id.layout_loader);
+        layout_failed.setVisibility(View.VISIBLE);
 
         muslimApiInterface = ApiClient.getClient().create(MuslimApiInterface.class);
 
@@ -76,8 +74,8 @@ public class DoaMenuActivity extends AppCompatActivity implements DailyDoaAdapte
                 if (result != null) {
                     Log.d(TAG, "onResponse: Size Data" + result.getResult().getData().size());
                     List<Doa> doas = result.getResult().getData();
-//                    layout_success.setVisibility(View.VISIBLE);
-//                    layout_failed.setVisibility(View.GONE);
+                    layout_success.setVisibility(View.VISIBLE);
+                    layout_failed.setVisibility(View.GONE);
                     addToLisDoas(doas);
                 }
             }

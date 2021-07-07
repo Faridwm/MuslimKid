@@ -10,12 +10,12 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="116dp"
         android:fontFamily="sans-serif-black"
         android:gravity="center"
         android:text="@string/muslim_kids"
         android:textSize="25sp"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintBottom_toTopOf="@+id/btn_act_iqra"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,26 +24,27 @@
         android:id="@+id/btn_act_iqra"
         android:layout_width="120dp"
         android:layout_height="110dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="80dp"
         android:background="@color/white"
         android:scaleType="fitXY"
         android:src="@drawable/abata"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btn_act_doa"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="244dp"
-        android:text="Doa Harian"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="120dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="52dp"
+        android:background="@color/white"
+        android:scaleType="fitXY"
+        android:src="@drawable/book"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.481"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
         android:id="@+id/textView2"
@@ -54,9 +55,24 @@
         android:gravity="center"
         android:text="IQRA"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_act_doa"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_act_iqra" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="182dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text="Doa - Doa Harian"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_act_doa" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,27 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp"
+    android:padding="5dp"
     >
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/abu_muda"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:cardCornerRadius="10dp"
+        app:cardCornerRadius="15dp"
         >
         <TextView
             android:id="@+id/tv_nama_doa"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:layout_marginStart="4dp"
             android:gravity="center_vertical"
             android:text="@string/nama_doa"
             android:textSize="15sp"
             android:textStyle="bold"
+            android:padding="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

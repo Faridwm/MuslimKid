@@ -31,7 +31,7 @@ public class ReadDoaActivity extends AppCompatActivity {
         doa = getIntent().getParcelableExtra(EXTRA_DOA);
         tv_title.setText(doa.getTitle());
         tv_arabic.setText(doa.getInArabic());
-        tv_latin.setText(doa.getInLatin());
-        tv_trans.setText(doa.getTranslation());
+        tv_latin.setText("Latin: " + doa.getInLatin());
+        tv_trans.setText("Terjemahan: " + doa.getTranslation());
     }
 }
