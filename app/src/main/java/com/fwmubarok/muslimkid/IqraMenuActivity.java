@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class IqraMenuActivity extends AppCompatActivity {
 
@@ -14,7 +15,7 @@ public class IqraMenuActivity extends AppCompatActivity {
     private Context context = this;
 
     //Button
-    private Button btn_iqra_1, btn_iqra_2, btn_iqra_3, btn_iqra_4, btn_iqra_5, btn_iqra_6;
+    private ImageButton btn_iqra_1, btn_iqra_2, btn_iqra_3, btn_iqra_4, btn_iqra_5, btn_iqra_6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
