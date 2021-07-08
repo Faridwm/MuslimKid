@@ -1,11 +1,13 @@
 package com.fwmubarok.muslimkid.Adapter;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fwmubarok.muslimkid.Model.DailyDoa;
@@ -41,6 +43,12 @@ public class DailyDoaAdapter extends RecyclerView.Adapter<DailyDoaAdapter.ListVi
                 onDailyDoaListener.OnDailyDoaClick(position);
             }
         });
+
+        if (position % 2 == 0) {
+            holder.tv_judul_doa.setBackgroundColor(Color.parseColor("#FF8B3D"));
+        } else {
+            holder.tv_judul_doa.setBackgroundColor(Color.parseColor("#308CCE"));
+        }
     }
 
     @Override
@@ -50,12 +58,14 @@ public class DailyDoaAdapter extends RecyclerView.Adapter<DailyDoaAdapter.ListVi
 
     public class ListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         //Text View
+        CardView rv_card;
         TextView tv_judul_doa;
         OnDailyDoaListener onDailyDoaListener;
 
         public ListViewHolder(@NonNull View itemView, OnDailyDoaListener onDailyDoaListener) {
             super(itemView);
             tv_judul_doa = itemView.findViewById(R.id.tv_nama_doa);
+            rv_card = itemView.findViewById(R.id.rv_card_layout);
 
             this.onDailyDoaListener = onDailyDoaListener;
         }
