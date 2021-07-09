@@ -24,7 +24,8 @@
                 android:layout_marginTop="68dp"
                 android:fontFamily="sans-serif-black"
                 android:text="Doa-doa Harian"
-                android:textSize="18sp"
+                android:textColor="@color/primary_blue"
+                android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -33,7 +34,7 @@
                 android:id="@+id/rv_daily_doa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="36dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -48,10 +49,12 @@
             android:visibility="gone">
 
             <ProgressBar
-                android:id="@+id/doa_progrewss_bar"
+                android:id="@+id/doa_progress_bar"
                 style="?android:attr/progressBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:indeterminateDrawable="@drawable/progress_bg"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

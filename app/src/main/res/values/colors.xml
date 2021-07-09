@@ -8,6 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#ffffff</color>
     <color name="abu_muda">#DCD8D8</color>
-    <color name="orange">#FF8B3D</color>
-    <color name="orange_muda">#FFA05F</color>
+    <color name="primary_orange">#FF8B3D</color>
+    <color name="secondary_orange">#FFA05F</color>
+    <color name="primary_blue">#308CCE</color>
 </resources>

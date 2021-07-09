@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fwmubarok.muslimkid.Model.DailyDoa;
@@ -45,9 +47,10 @@ public class DailyDoaAdapter extends RecyclerView.Adapter<DailyDoaAdapter.ListVi
         });
 
         if (position % 2 == 0) {
-            holder.tv_judul_doa.setBackgroundColor(Color.parseColor("#FF8B3D"));
+//            holder.tv_judul_doa.setBackgroundColor(Color.parseColor("#FF8B3D"));
+            holder.tv_judul_doa.setBackgroundColor(ContextCompat.getColor(holder.tv_judul_doa.getContext(), R.color.primary_orange));
         } else {
-            holder.tv_judul_doa.setBackgroundColor(Color.parseColor("#308CCE"));
+            holder.tv_judul_doa.setBackgroundColor(ContextCompat.getColor(holder.tv_judul_doa.getContext(), R.color.primary_blue));
         }
     }
 

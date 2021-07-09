@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -16,7 +16,6 @@ import android.widget.ProgressBar;
 import com.fwmubarok.muslimkid.Adapter.DailyDoaAdapter;
 import com.fwmubarok.muslimkid.Model.DailyDoa;
 import com.fwmubarok.muslimkid.Model.Doa;
-import com.fwmubarok.muslimkid.Model.Result;
 import com.fwmubarok.muslimkid.MyInterface.MuslimApiInterface;
 import com.fwmubarok.muslimkid.REST.ApiClient;
 
