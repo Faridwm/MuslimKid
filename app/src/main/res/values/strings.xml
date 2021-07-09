@@ -5,4 +5,14 @@
     <string name="muslim_kids">Muslim Kid</string>
     <string name="artinya">Artinya :</string>
     <string name="judul_doa">Judul Doa</string>
+    <string name="doa_doa_harian">Doa-doa Harian</string>
+    <string name="doa_in_arabic">doa in arabic</string>
+    <string name="latin">Latin</string>
+    <string name="terjemahan">Terjemahan</string>
+    <string name="iqra_1">iqra 1</string>
+    <string name="iqra_2">iqra 2</string>
+    <string name="iqra_3">iqra 3</string>
+    <string name="iqra_4">iqra 4</string>
+    <string name="iqra_5">iqra 5</string>
+    <string name="iqra_6">iqra 6</string>
 </resources>

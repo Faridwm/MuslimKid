@@ -86,7 +86,7 @@
       android:layout_marginEnd="60dp"
       android:fontFamily="sans-serif-medium"
       android:gravity="center"
-      android:text="iqra 1"
+      android:text="@string/iqra_1"
       android:textSize="18sp"
       app:layout_constraintBottom_toTopOf="@+id/btn_iqra_3"
       app:layout_constraintEnd_toEndOf="parent"
@@ -102,7 +102,7 @@
       android:layout_marginEnd="36dp"
       android:fontFamily="sans-serif-medium"
       android:gravity="center"
-      android:text="iqra 2"
+      android:text="@string/iqra_2"
       android:textSize="18sp"
       app:layout_constraintBottom_toTopOf="@+id/btn_iqra_4"
       app:layout_constraintEnd_toStartOf="@+id/tv_iqra_1"
@@ -118,7 +118,7 @@
       android:layout_marginEnd="60dp"
       android:fontFamily="sans-serif-medium"
       android:gravity="center"
-      android:text="iqra 3"
+      android:text="@string/iqra_3"
       android:textSize="18sp"
       app:layout_constraintBottom_toTopOf="@+id/btn_iqra_5"
       app:layout_constraintEnd_toEndOf="parent"
@@ -134,7 +134,7 @@
       android:layout_marginEnd="36dp"
       android:fontFamily="sans-serif-medium"
       android:gravity="center"
-      android:text="iqra 4"
+      android:text="@string/iqra_4"
       android:textSize="18sp"
       app:layout_constraintBottom_toTopOf="@+id/btn_iqra_6"
       app:layout_constraintEnd_toStartOf="@+id/tv_iqra_3"
@@ -150,7 +150,7 @@
       android:layout_marginEnd="60dp"
       android:fontFamily="sans-serif-medium"
       android:gravity="center"
-      android:text="iqra 5"
+      android:text="@string/iqra_5"
       android:textSize="18sp"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toEndOf="@+id/tv_iqra_6"
@@ -165,7 +165,7 @@
       android:layout_marginEnd="32dp"
       android:fontFamily="sans-serif-medium"
       android:gravity="center"
-      android:text="iqra 6"
+      android:text="@string/iqra_6"
       android:textSize="18sp"
       app:layout_constraintEnd_toStartOf="@+id/tv_iqra_5"
       app:layout_constraintStart_toStartOf="parent"
@@ -180,7 +180,8 @@
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.0"
       app:layout_constraintStart_toStartOf="parent"
-      app:srcCompat="@drawable/rectangle" />
+      app:srcCompat="@drawable/rectangle"
+      />
 
   <ImageView
       android:id="@+id/imageView2"
@@ -189,6 +190,7 @@
       android:layout_marginBottom="28dp"
       app:layout_constraintBottom_toTopOf="@+id/btn_iqra_1"
       app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.0"
       app:layout_constraintStart_toStartOf="parent"
       app:srcCompat="@drawable/oval" />
 

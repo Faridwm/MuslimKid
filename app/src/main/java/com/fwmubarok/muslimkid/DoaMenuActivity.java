@@ -2,6 +2,7 @@ package com.fwmubarok.muslimkid;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,7 +35,8 @@ public class DoaMenuActivity extends AppCompatActivity implements DailyDoaAdapte
 
     private MuslimApiInterface muslimApiInterface;
 
-    private ConstraintLayout layout_success, layout_failed;
+    private ConstraintLayout layout_failed;
+    private NestedScrollView layout_success;
 
     private RecyclerView rv_daily_doa;
     private RecyclerView.LayoutManager layoutManager;
@@ -55,7 +57,12 @@ public class DoaMenuActivity extends AppCompatActivity implements DailyDoaAdapte
         muslimApiInterface = ApiClient.getClient().create(MuslimApiInterface.class);
 
         rv_daily_doa = findViewById(R.id.rv_daily_doa);
-        layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false) {
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        };
         rv_daily_doa.setLayoutManager(layoutManager);
 
         getDailyDoa();
