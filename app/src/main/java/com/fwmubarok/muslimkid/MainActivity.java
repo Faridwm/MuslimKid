@@ -1,6 +1,7 @@
 package com.fwmubarok.muslimkid;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Context;
 import android.content.Intent;
@@ -21,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         btn_iqra = findViewById(R.id.btn_act_iqra);
         btn_doa = findViewById(R.id.btn_act_doa);
