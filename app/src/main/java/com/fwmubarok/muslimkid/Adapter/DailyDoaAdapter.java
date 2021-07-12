@@ -47,7 +47,6 @@ public class DailyDoaAdapter extends RecyclerView.Adapter<DailyDoaAdapter.ListVi
         });
 
         if (position % 2 == 0) {
-//            holder.tv_judul_doa.setBackgroundColor(Color.parseColor("#FF8B3D"));
             holder.tv_judul_doa.setBackgroundColor(ContextCompat.getColor(holder.tv_judul_doa.getContext(), R.color.primary_orange));
         } else {
             holder.tv_judul_doa.setBackgroundColor(ContextCompat.getColor(holder.tv_judul_doa.getContext(), R.color.primary_blue));

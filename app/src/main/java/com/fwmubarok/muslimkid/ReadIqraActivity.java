@@ -3,21 +3,29 @@ package com.fwmubarok.muslimkid;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.github.barteksc.pdfviewer.PDFView;
+import com.github.barteksc.pdfviewer.listener.OnPageScrollListener;
+import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
 
 public class ReadIqraActivity extends AppCompatActivity {
 
     public static final String EXTRA_IQRA_NUMBER = "";
     private String pdf_name = "";
 
+    //Tezt View
+    private TextView tv_iqra_num;
+
     //PDF view
-    PDFView pdfView;
+    private PDFView pdfView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_iqra);
+
+        tv_iqra_num = findViewById(R.id.tv_read_iqra_num);
 
         pdfView = findViewById(R.id.pdf_view);
         int iqra_num = getIntent().getIntExtra(EXTRA_IQRA_NUMBER, 1);
@@ -41,7 +49,13 @@ public class ReadIqraActivity extends AppCompatActivity {
                 pdf_name = "iqro6.pdf";
                 break;
         }
-        pdfView.fromAsset(pdf_name).load();
+
+        String i_num = "Iqra " + Integer.toString(iqra_num);
+
+        tv_iqra_num.setText(i_num);
+        pdfView.fromAsset(pdf_name)
+                .scrollHandle(new DefaultScrollHandle(this))
+                .load();
     }
 
 

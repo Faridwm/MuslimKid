@@ -15,4 +15,6 @@
     <string name="iqra_4">iqra 4</string>
     <string name="iqra_5">iqra 5</string>
     <string name="iqra_6">iqra 6</string>
+    <string name="error">Error</string>
+    <string name="message">Message</string>
 </resources>

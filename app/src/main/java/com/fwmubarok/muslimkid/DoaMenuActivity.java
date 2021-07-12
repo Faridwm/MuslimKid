@@ -8,11 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.fwmubarok.muslimkid.Adapter.DailyDoaAdapter;
 import com.fwmubarok.muslimkid.Model.DailyDoa;
@@ -35,14 +34,14 @@ public class DoaMenuActivity extends AppCompatActivity implements DailyDoaAdapte
 
     private MuslimApiInterface muslimApiInterface;
 
-    private ConstraintLayout layout_failed;
+    private TextView tv_err_msg;
+
+    private ConstraintLayout layout_loader, layout_failed;
     private NestedScrollView layout_success;
 
     private RecyclerView rv_daily_doa;
     private RecyclerView.LayoutManager layoutManager;
     private DailyDoaAdapter dailyDoaAdapter;
-
-    private ProgressBar doa_progress_bar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +50,13 @@ public class DoaMenuActivity extends AppCompatActivity implements DailyDoaAdapte
 
         layout_success = findViewById(R.id.layout_get_data);
         layout_success.setVisibility(View.GONE);
-        layout_failed = findViewById(R.id.layout_loader);
-        layout_failed.setVisibility(View.VISIBLE);
+        layout_failed = findViewById(R.id.layout_failed_get_data);
+        layout_failed.setVisibility(View.GONE);
+        layout_loader = findViewById(R.id.layout_loader);
+        layout_loader.setVisibility(View.VISIBLE);
+
+        //Component layout error
+        tv_err_msg = findViewById(R.id.tv_doa_error_msg);
 
         muslimApiInterface = ApiClient.getClient().create(MuslimApiInterface.class);
 
@@ -75,11 +79,16 @@ public class DoaMenuActivity extends AppCompatActivity implements DailyDoaAdapte
             public void onResponse(Call<DailyDoa> call, Response<DailyDoa> response) {
                 if (!response.isSuccessful()) {
                     Log.d(TAG, "Code: " + response.code());
+                    tv_err_msg.setText(response.message());
+                    layout_loader.setVisibility(View.GONE);
+                    layout_success.setVisibility(View.GONE);
+                    layout_failed.setVisibility(View.VISIBLE);
                 }
                 result = response.body();
                 if (result != null) {
                     Log.d(TAG, "onResponse: Size Data" + result.getResult().getData().size());
                     List<Doa> doas = result.getResult().getData();
+                    layout_loader.setVisibility(View.GONE);
                     layout_success.setVisibility(View.VISIBLE);
                     layout_failed.setVisibility(View.GONE);
                     addToLisDoas(doas);
@@ -89,6 +98,10 @@ public class DoaMenuActivity extends AppCompatActivity implements DailyDoaAdapte
             @Override
             public void onFailure(Call<DailyDoa> call, Throwable t) {
                 Log.d(TAG, "Message: " + t.getMessage());
+                tv_err_msg.setText(t.getMessage());
+                layout_loader.setVisibility(View.GONE);
+                layout_success.setVisibility(View.GONE);
+                layout_failed.setVisibility(View.VISIBLE);
             }
         });
 
@@ -105,6 +118,7 @@ public class DoaMenuActivity extends AppCompatActivity implements DailyDoaAdapte
         Log.d(TAG, "OnDailyDoaClick: Clicked");
         Intent intent = new Intent(context, ReadDoaActivity.class);
         intent.putExtra(ReadDoaActivity.EXTRA_DOA, doas.get(position));
+        intent.putExtra(ReadDoaActivity.EXTRA_POSITION, position);
         startActivity(intent);
     }
 }
