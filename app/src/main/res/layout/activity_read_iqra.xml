@@ -42,14 +42,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/pdf_page"
-        android:layout_width="344dp"
-        android:layout_height="522dp"
-        android:layout_marginBottom="104dp"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_pdf_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="180dp"
+        android:background="@drawable/border"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2">
+
+        <com.github.chrisbanes.photoview.PhotoView
+            android:id="@+id/pdf_page"
+            android:layout_width="350dp"
+            android:layout_height="550dp"
+            android:layout_margin="5dp"
+            tools:src="@drawable/rectangle" />
+
+    </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/btn_next"
@@ -59,7 +72,7 @@
         android:layout_marginEnd="52dp"
         android:background="@drawable/ic_baseline_arrow_right"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pdf_page" />
+        app:layout_constraintTop_toBottomOf="@+id/cv_pdf_page" />
 
     <Button
         android:id="@+id/btn_prev"
@@ -69,7 +82,7 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/ic_baseline_arrow_left"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pdf_page" />
+        app:layout_constraintTop_toBottomOf="@+id/cv_pdf_page" />
 
     <TextView
         android:id="@+id/tv_page_num"
@@ -83,6 +96,6 @@
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pdf_page" />
+        app:layout_constraintTop_toBottomOf="@+id/cv_pdf_page" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
