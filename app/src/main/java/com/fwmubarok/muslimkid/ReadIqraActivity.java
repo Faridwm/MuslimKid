@@ -26,7 +26,7 @@ public class ReadIqraActivity extends AppCompatActivity {
     private ParcelFileDescriptor parcelFileDescriptor;
 
     //Tezt View
-    private TextView tv_iqra_num;
+    private TextView tv_iqra_num, tv_page_num;
 
     //Image view
     private ImageView iv_pdf_page;
@@ -40,6 +40,7 @@ public class ReadIqraActivity extends AppCompatActivity {
         setContentView(R.layout.activity_read_iqra);
 
         tv_iqra_num = findViewById(R.id.tv_read_iqra_num);
+        tv_page_num = findViewById(R.id.tv_page_num);
         iv_pdf_page = findViewById(R.id.pdf_page);
         btn_next = findViewById(R.id.btn_next);
         btn_prev = findViewById(R.id.btn_prev);
@@ -101,6 +102,11 @@ public class ReadIqraActivity extends AppCompatActivity {
         Bitmap bitmap = Bitmap.createBitmap(page.getWidth(), page.getHeight(), Bitmap.Config.ARGB_8888);
         page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
         iv_pdf_page.setImageBitmap(bitmap);
+        String pg_num = "Page " + Integer.toString(pageIndex);
+        if (pageIndex == 0) {
+            pg_num = "Cover";
+        }
+        tv_page_num.setText(pg_num);
         btn_next.setEnabled(page.getIndex() + 1 < pdfRenderer.getPageCount());
         btn_prev.setEnabled(page.getIndex() > 0);
     }
