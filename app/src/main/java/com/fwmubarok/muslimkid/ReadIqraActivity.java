@@ -1,5 +1,6 @@
 package com.fwmubarok.muslimkid;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Bitmap;
@@ -38,6 +39,11 @@ public class ReadIqraActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_iqra);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setElevation(0);
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         tv_iqra_num = findViewById(R.id.tv_read_iqra_num);
         tv_page_num = findViewById(R.id.tv_page_num);

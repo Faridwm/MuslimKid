@@ -1,5 +1,6 @@
 package com.fwmubarok.muslimkid;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.widget.NestedScrollView;
@@ -46,6 +47,11 @@ public class DoaMenuActivity extends AppCompatActivity implements DailyDoaAdapte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doa_menu);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setElevation(0);
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         layout_success = findViewById(R.id.layout_get_data);
         layout_success.setVisibility(View.GONE);

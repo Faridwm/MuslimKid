@@ -1,10 +1,12 @@
 package com.fwmubarok.muslimkid;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,6 +25,8 @@ public class ReadDoaActivity extends AppCompatActivity {
     private ArrayList<Doa> doas = new ArrayList<>();
     private int position;
 
+    ActionBar actionBar;
+
     //Text View
     private TextView tv_title, tv_arabic, tv_latin, tv_trans;
 
@@ -40,6 +44,11 @@ public class ReadDoaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_doa);
+
+        actionBar = getSupportActionBar();
+        actionBar.setElevation(0);
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         tv_title = findViewById(R.id.read_title);
         tv_arabic = findViewById(R.id.read_arabic);
@@ -98,6 +107,7 @@ public class ReadDoaActivity extends AppCompatActivity {
             cv_artinya.setCardBackgroundColor(ContextCompat.getColor(context, R.color.primary_orange));
             btn_next.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.primary_orange));
             btn_prev.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.primary_orange));
+            actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.primary_orange)));
         } else {
             tv_title.setTextColor(ContextCompat.getColor(context, R.color.primary_blue));
             tv_latin.setTextColor(ContextCompat.getColor(context, R.color.primary_blue));
@@ -106,6 +116,7 @@ public class ReadDoaActivity extends AppCompatActivity {
             cv_artinya.setCardBackgroundColor(ContextCompat.getColor(context, R.color.primary_blue));
             btn_next.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.primary_blue));
             btn_prev.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.primary_blue));
+            actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.primary_blue)));
         }
 
         String latin = "\"" + doa.getInLatin() + "\"";

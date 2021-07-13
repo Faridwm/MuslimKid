@@ -1,5 +1,6 @@
 package com.fwmubarok.muslimkid;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -20,6 +21,11 @@ public class IqraMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_iqra_menu);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setElevation(0);
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         btn_iqra_1 =  findViewById(R.id.btn_iqra_1);
         btn_iqra_2 =  findViewById(R.id.btn_iqra_2);
