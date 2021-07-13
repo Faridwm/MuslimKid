@@ -20,7 +20,6 @@ import com.fwmubarok.muslimkid.MyInterface.MuslimApiInterface;
 import com.fwmubarok.muslimkid.REST.ApiClient;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,7 +29,7 @@ public class DoaMenuActivity extends AppCompatActivity implements DailyDoaAdapte
     private Context context = this;
     private final String TAG = this.getClass().getSimpleName();
     private DailyDoa result;
-    private List<Doa> doas = new ArrayList<>();
+    private ArrayList<Doa> doas = new ArrayList<>();
 
     private MuslimApiInterface muslimApiInterface;
 
@@ -87,7 +86,7 @@ public class DoaMenuActivity extends AppCompatActivity implements DailyDoaAdapte
                 result = response.body();
                 if (result != null) {
                     Log.d(TAG, "onResponse: Size Data" + result.getResult().getData().size());
-                    List<Doa> doas = result.getResult().getData();
+                    ArrayList<Doa> doas = result.getResult().getData();
                     layout_loader.setVisibility(View.GONE);
                     layout_success.setVisibility(View.VISIBLE);
                     layout_failed.setVisibility(View.GONE);
@@ -107,7 +106,7 @@ public class DoaMenuActivity extends AppCompatActivity implements DailyDoaAdapte
 
     }
 
-    private void addToLisDoas(List<Doa> doas) {
+    private void addToLisDoas(ArrayList<Doa> doas) {
         this.doas = doas;
         dailyDoaAdapter = new DailyDoaAdapter(this.doas, this);
         rv_daily_doa.setAdapter(dailyDoaAdapter);
@@ -117,7 +116,8 @@ public class DoaMenuActivity extends AppCompatActivity implements DailyDoaAdapte
     public void OnDailyDoaClick(int position) {
         Log.d(TAG, "OnDailyDoaClick: Clicked");
         Intent intent = new Intent(context, ReadDoaActivity.class);
-        intent.putExtra(ReadDoaActivity.EXTRA_DOA, doas.get(position));
+        intent.putParcelableArrayListExtra(ReadDoaActivity.EXTRA_DOA, doas);
+//        intent.putExtra(ReadDoaActivity.EXTRA_DOA, doas.get(position));
         intent.putExtra(ReadDoaActivity.EXTRA_POSITION, position);
         startActivity(intent);
     }

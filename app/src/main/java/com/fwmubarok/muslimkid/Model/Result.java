@@ -2,17 +2,18 @@ package com.fwmubarok.muslimkid.Model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Result {
     @SerializedName("data")
-    private List<Doa> data;
+    private ArrayList<Doa> data;
 
-    public List<Doa> getData() {
+    public ArrayList<Doa> getData() {
         return data;
     }
 
-    public void setData(List<Doa> data) {
+    public void setData(ArrayList<Doa> data) {
         this.data = data;
     }
 }

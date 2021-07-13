@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 public class IqraMenuActivity extends AppCompatActivity {
@@ -29,58 +28,38 @@ public class IqraMenuActivity extends AppCompatActivity {
         btn_iqra_5 =  findViewById(R.id.btn_iqra_5);
         btn_iqra_6 =  findViewById(R.id.btn_iqra_6);
 
-        btn_iqra_1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, ReadIqraActivity.class);
-                intent.putExtra(ReadIqraActivity.EXTRA_IQRA_NUMBER, 1);
-                startActivity(intent);
-            }
-        });
+        Intent intent = new Intent(context, ReadIqraActivity.class);
 
-        btn_iqra_2.setOnClickListener(new View.OnClickListener() {
+        View.OnClickListener clickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, ReadIqraActivity.class);
-                intent.putExtra(ReadIqraActivity.EXTRA_IQRA_NUMBER, 2);
-                startActivity(intent);
+                if (v == btn_iqra_1) {
+                    intent.putExtra(ReadIqraActivity.EXTRA_IQRA_NUMBER, 1);
+                    startActivity(intent);
+                } else if (v == btn_iqra_2) {
+                    intent.putExtra(ReadIqraActivity.EXTRA_IQRA_NUMBER, 2);
+                    startActivity(intent);
+                } else if (v == btn_iqra_3) {
+                    intent.putExtra(ReadIqraActivity.EXTRA_IQRA_NUMBER, 3);
+                    startActivity(intent);
+                } else if (v == btn_iqra_4) {
+                    intent.putExtra(ReadIqraActivity.EXTRA_IQRA_NUMBER, 4);
+                    startActivity(intent);
+                } else if (v == btn_iqra_5) {
+                    intent.putExtra(ReadIqraActivity.EXTRA_IQRA_NUMBER, 5);
+                    startActivity(intent);
+                } else if (v == btn_iqra_6) {
+                    intent.putExtra(ReadIqraActivity.EXTRA_IQRA_NUMBER, 6);
+                    startActivity(intent);
+                }
             }
-        });
+        };
 
-        btn_iqra_3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, ReadIqraActivity.class);
-                intent.putExtra(ReadIqraActivity.EXTRA_IQRA_NUMBER, 3);
-                startActivity(intent);
-            }
-        });
-
-        btn_iqra_4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, ReadIqraActivity.class);
-                intent.putExtra(ReadIqraActivity.EXTRA_IQRA_NUMBER, 4);
-                startActivity(intent);
-            }
-        });
-
-        btn_iqra_5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, ReadIqraActivity.class);
-                intent.putExtra(ReadIqraActivity.EXTRA_IQRA_NUMBER, 5);
-                startActivity(intent);
-            }
-        });
-
-        btn_iqra_6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, ReadIqraActivity.class);
-                intent.putExtra(ReadIqraActivity.EXTRA_IQRA_NUMBER, 6);
-                startActivity(intent);
-            }
-        });
+        btn_iqra_1.setOnClickListener(clickListener);
+        btn_iqra_2.setOnClickListener(clickListener);
+        btn_iqra_3.setOnClickListener(clickListener);
+        btn_iqra_4.setOnClickListener(clickListener);
+        btn_iqra_5.setOnClickListener(clickListener);
+        btn_iqra_6.setOnClickListener(clickListener);
     }
 }

@@ -11,4 +11,5 @@
     <color name="primary_orange">#FF8B3D</color>
     <color name="secondary_orange">#FFA05F</color>
     <color name="primary_blue">#308CCE</color>
+    <color name="disable_gray">#E5E5E5</color>
 </resources>
