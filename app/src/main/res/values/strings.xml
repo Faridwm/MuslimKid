@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">MuslimKid</string>
+    <string name="app_name">Muslim Kid: </string>
     <string name="nama_doa">Nama Doa</string>
     <string name="iqra">Iqra</string>
-    <string name="muslim_kids">Muslim Kid</string>
+    <string name="muslim_kids">Muslim Kid: Baca Iqra dan Doa</string>
     <string name="artinya">Artinya :</string>
     <string name="judul_doa">Judul Doa</string>
     <string name="doa_doa_harian">Doa-doa Harian</string>
