@@ -11,6 +11,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -106,26 +108,35 @@ public class ReadDoaActivity extends AppCompatActivity {
             btn_next.setAlpha(1.0f);
         }
 
-        int color = R.color.disable_gray;
+        int color_primary = R.color.disable_gray;
+        int color_secondary = R.color.disable_gray;
 
         if (position % 4 == 0) {
-            color = R.color.primary_red;
+            color_primary = R.color.primary_red;
+            color_secondary = R.color.secondary_red;
         } else if (position % 4 == 1){
-            color = R.color.primary_blue;
+            color_primary = R.color.primary_blue;
+            color_secondary = R.color.secondary_blue;
         } else if (position % 4 == 2){
-            color = R.color.primary_green;
+            color_primary = R.color.primary_green;
+            color_secondary = R.color.secondary_green;
         } else {
-            color = R.color.primary_orange;
+            color_primary = R.color.primary_orange;
+            color_secondary = R.color.secondary_orange;
         }
 
-        tv_title.setTextColor(ContextCompat.getColor(context, color));
-        tv_latin.setTextColor(ContextCompat.getColor(context, color));
-        tv_trans.setTextColor(ContextCompat.getColor(context, color));
-        cv_arabic.setCardBackgroundColor(ContextCompat.getColor(context, color));
-        cv_artinya.setCardBackgroundColor(ContextCompat.getColor(context, color));
-        btn_next.setBackgroundTintList(ContextCompat.getColorStateList(context, color));
-        btn_prev.setBackgroundTintList(ContextCompat.getColorStateList(context, color));
-        actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(color)));
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.setStatusBarColor(getResources().getColor(color_secondary));
+        tv_title.setTextColor(ContextCompat.getColor(context, color_primary));
+        tv_latin.setTextColor(ContextCompat.getColor(context, color_primary));
+        tv_trans.setTextColor(ContextCompat.getColor(context, color_primary));
+        cv_arabic.setCardBackgroundColor(ContextCompat.getColor(context, color_primary));
+        cv_artinya.setCardBackgroundColor(ContextCompat.getColor(context, color_primary));
+        btn_next.setBackgroundTintList(ContextCompat.getColorStateList(context, color_primary));
+        btn_prev.setBackgroundTintList(ContextCompat.getColorStateList(context, color_primary));
+        actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(color_primary)));
 
         String latin = "\"" + doa.getInLatin() + "\"";
         tv_title.setText(doa.getTitle());
