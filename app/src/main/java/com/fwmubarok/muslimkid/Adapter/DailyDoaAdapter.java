@@ -1,9 +1,12 @@
 package com.fwmubarok.muslimkid.Adapter;
 
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,16 +20,20 @@ import com.fwmubarok.muslimkid.Model.Doa;
 import com.fwmubarok.muslimkid.R;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-public class DailyDoaAdapter extends RecyclerView.Adapter<DailyDoaAdapter.ListViewHolder> {
+public class DailyDoaAdapter extends RecyclerView.Adapter<DailyDoaAdapter.ListViewHolder> implements Filterable {
+    private static final String TAG = "DailyDoaAdapter";
 
     private List<Doa> doas = new ArrayList<>();
+    private List<Doa> doasFull;
     private OnDailyDoaListener onDailyDoaListener;
 
     public DailyDoaAdapter(List<Doa> doas, OnDailyDoaListener onDailyDoaListener) {
         this.doas = doas;
         this.onDailyDoaListener = onDailyDoaListener;
+        doasFull = new ArrayList<>(doas);
     }
 
     @Override
@@ -57,6 +64,42 @@ public class DailyDoaAdapter extends RecyclerView.Adapter<DailyDoaAdapter.ListVi
     public int getItemCount() {
         return doas.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return doaFiltered;
+    }
+
+    private Filter doaFiltered = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Doa> filDoa = new ArrayList<>();
+
+            if (constraint.toString().isEmpty()) {
+                filDoa.addAll(doasFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                Log.d(TAG, "performFiltering: Pattern " + filterPattern);
+
+                for (Doa doa : doasFull) {
+                    if (doa.getTitle().toLowerCase().contains(filterPattern)) {
+                        filDoa.add(doa);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filDoa;
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            doas.clear();
+            doas.addAll((Collection<? extends Doa>) results.values);
+            notifyDataSetChanged();
+        }
+    };
 
     public class ListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         //Text View

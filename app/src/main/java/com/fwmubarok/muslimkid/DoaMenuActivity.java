@@ -2,6 +2,7 @@ package com.fwmubarok.muslimkid;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,7 +12,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 
 import com.fwmubarok.muslimkid.Adapter.DailyDoaAdapter;
@@ -31,6 +36,7 @@ public class DoaMenuActivity extends AppCompatActivity implements DailyDoaAdapte
     private final String TAG = this.getClass().getSimpleName();
     private DailyDoa result;
     private ArrayList<Doa> doas = new ArrayList<>();
+    private boolean isSuccess;
 
     private MuslimApiInterface muslimApiInterface;
 
@@ -60,6 +66,8 @@ public class DoaMenuActivity extends AppCompatActivity implements DailyDoaAdapte
         layout_loader = findViewById(R.id.layout_loader);
         layout_loader.setVisibility(View.VISIBLE);
 
+        invalidateOptionsMenu();
+
         //Component layout error
         tv_err_msg = findViewById(R.id.tv_doa_error_msg);
 
@@ -88,6 +96,8 @@ public class DoaMenuActivity extends AppCompatActivity implements DailyDoaAdapte
                     layout_loader.setVisibility(View.GONE);
                     layout_success.setVisibility(View.GONE);
                     layout_failed.setVisibility(View.VISIBLE);
+                    isSuccess = false;
+                    invalidateOptionsMenu();
                 }
                 result = response.body();
                 if (result != null) {
@@ -96,6 +106,8 @@ public class DoaMenuActivity extends AppCompatActivity implements DailyDoaAdapte
                     layout_loader.setVisibility(View.GONE);
                     layout_success.setVisibility(View.VISIBLE);
                     layout_failed.setVisibility(View.GONE);
+                    isSuccess = true;
+                    invalidateOptionsMenu();
                     addToLisDoas(doas);
                 }
             }
@@ -107,6 +119,8 @@ public class DoaMenuActivity extends AppCompatActivity implements DailyDoaAdapte
                 layout_loader.setVisibility(View.GONE);
                 layout_success.setVisibility(View.GONE);
                 layout_failed.setVisibility(View.VISIBLE);
+                isSuccess = false;
+                invalidateOptionsMenu();
             }
         });
 
@@ -126,5 +140,32 @@ public class DoaMenuActivity extends AppCompatActivity implements DailyDoaAdapte
 //        intent.putExtra(ReadDoaActivity.EXTRA_DOA, doas.get(position));
         intent.putExtra(ReadDoaActivity.EXTRA_POSITION, position);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.doa_menu, menu);
+
+        MenuItem searchItemDoa = menu.findItem(R.id.search_doa);
+        SearchView searchView = (SearchView) searchItemDoa.getActionView();
+
+        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+
+        searchItemDoa.setVisible(isSuccess);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                dailyDoaAdapter.getFilter().filter(newText);
+                return true;
+            }
+        });
+        return true;
     }
 }
