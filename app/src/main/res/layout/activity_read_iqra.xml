@@ -34,9 +34,10 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_pdf_page"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="110dp"
+            android:layout_marginHorizontal="10dp"
             android:background="@drawable/border"
             android:visibility="visible"
             app:cardCornerRadius="20dp"
@@ -47,9 +48,10 @@
 
             <com.github.chrisbanes.photoview.PhotoView
                 android:id="@+id/pdf_page"
-                android:layout_width="350dp"
-                android:layout_height="500dp"
-                android:layout_margin="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_gravity="center"
                 tools:src="@drawable/rectangle" />
 
         </androidx.cardview.widget.CardView>
@@ -59,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="52dp"
+            android:layout_marginEnd="44dp"
             android:layout_marginBottom="60dp"
             android:background="@drawable/ic_baseline_arrow_right"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -70,7 +72,7 @@
             android:id="@+id/btn_prev"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="52dp"
+            android:layout_marginStart="44dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="60dp"
             android:background="@drawable/ic_baseline_arrow_left"
@@ -80,7 +82,7 @@
 
         <TextView
             android:id="@+id/tv_page_num"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="23dp"
             android:layout_marginBottom="68dp"

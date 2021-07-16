@@ -4,6 +4,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
+import androidx.core.widget.NestedScrollView;
 
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
@@ -36,6 +37,8 @@ public class ReadDoaActivity extends AppCompatActivity {
     //Card vIew
     private CardView cv_arabic, cv_artinya;
 
+    private NestedScrollView ns_scroll;
+
     //EXTRA
     public static final String EXTRA_DOA = "extra_doa";
     public static final String EXTRA_POSITION = "extra_position";
@@ -49,6 +52,8 @@ public class ReadDoaActivity extends AppCompatActivity {
         actionBar.setElevation(0);
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        ns_scroll = findViewById(R.id.nested_scroll);
 
         tv_title = findViewById(R.id.read_title);
         tv_arabic = findViewById(R.id.read_arabic);
@@ -71,9 +76,11 @@ public class ReadDoaActivity extends AppCompatActivity {
                 if (v == btn_next) {
                     position++;
                     updateView(position);
+                    ns_scroll.scrollTo(0,0);
                 } else if (v == btn_prev) {
                     position--;
                     updateView(position);
+                    ns_scroll.scrollTo(0,0);
                 }
             }
         };
