@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -17,6 +18,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.fwmubarok.muslimkid.Adapter.DailyDoaAdapter;
@@ -25,6 +27,7 @@ import com.fwmubarok.muslimkid.Model.Doa;
 import com.fwmubarok.muslimkid.MyInterface.MuslimApiInterface;
 import com.fwmubarok.muslimkid.REST.ApiClient;
 
+import java.net.InetAddress;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -41,6 +44,8 @@ public class DoaMenuActivity extends AppCompatActivity implements DailyDoaAdapte
     private MuslimApiInterface muslimApiInterface;
 
     private TextView tv_err_msg;
+
+    private Button btn_refresh;
 
     private ConstraintLayout layout_loader, layout_failed;
     private NestedScrollView layout_success;
@@ -70,6 +75,22 @@ public class DoaMenuActivity extends AppCompatActivity implements DailyDoaAdapte
 
         //Component layout error
         tv_err_msg = findViewById(R.id.tv_doa_error_msg);
+        btn_refresh = findViewById(R.id.btn_refresh);
+
+        btn_refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                layout_loader.setVisibility(View.VISIBLE);
+//                layout_success.setVisibility(View.GONE);
+//                layout_failed.setVisibility(View.GONE);
+////                isSuccess = false;
+//                getDailyDoa();
+                finish();
+                overridePendingTransition(0, 0);
+                startActivity(getIntent());
+                overridePendingTransition(0, 0);
+            }
+        });
 
         muslimApiInterface = ApiClient.getClient().create(MuslimApiInterface.class);
 
@@ -86,47 +107,57 @@ public class DoaMenuActivity extends AppCompatActivity implements DailyDoaAdapte
     }
 
     private void getDailyDoa() {
-        Call<DailyDoa> call = muslimApiInterface.getDailyDoa();
-        call.enqueue(new Callback<DailyDoa>() {
-            @Override
-            public void onResponse(Call<DailyDoa> call, Response<DailyDoa> response) {
-                if (!response.isSuccessful()) {
-                    Log.d(TAG, "Code: " + response.code());
-                    tv_err_msg.setText(response.message());
+        Log.d(TAG, "getDailyDoa: " + isCanAccessInternet());
+        if (isNetworkConnected() && isCanAccessInternet()) {
+            Call<DailyDoa> call = muslimApiInterface.getDailyDoa();
+            call.enqueue(new Callback<DailyDoa>() {
+                @Override
+                public void onResponse(Call<DailyDoa> call, Response<DailyDoa> response) {
+                    if (!response.isSuccessful()) {
+                        Log.d(TAG, "Code: " + response.code());
+                        tv_err_msg.setText(response.message());
+                        layout_loader.setVisibility(View.GONE);
+                        layout_success.setVisibility(View.GONE);
+                        layout_failed.setVisibility(View.VISIBLE);
+                        isSuccess = false;
+                        invalidateOptionsMenu();
+                    }
+                    result = response.body();
+                    if (result != null) {
+                        Log.d(TAG, "onResponse: Size Data" + result.getResult().getData().size());
+                        ArrayList<Doa> doas = result.getResult().getData();
+                        layout_loader.setVisibility(View.GONE);
+                        layout_success.setVisibility(View.VISIBLE);
+                        layout_failed.setVisibility(View.GONE);
+                        isSuccess = true;
+                        invalidateOptionsMenu();
+                        addToListDoas(doas);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<DailyDoa> call, Throwable t) {
+                    Log.d(TAG, "Message: " + t.getMessage());
+                    tv_err_msg.setText(t.getMessage());
                     layout_loader.setVisibility(View.GONE);
                     layout_success.setVisibility(View.GONE);
                     layout_failed.setVisibility(View.VISIBLE);
                     isSuccess = false;
                     invalidateOptionsMenu();
                 }
-                result = response.body();
-                if (result != null) {
-                    Log.d(TAG, "onResponse: Size Data" + result.getResult().getData().size());
-                    ArrayList<Doa> doas = result.getResult().getData();
-                    layout_loader.setVisibility(View.GONE);
-                    layout_success.setVisibility(View.VISIBLE);
-                    layout_failed.setVisibility(View.GONE);
-                    isSuccess = true;
-                    invalidateOptionsMenu();
-                    addToLisDoas(doas);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<DailyDoa> call, Throwable t) {
-                Log.d(TAG, "Message: " + t.getMessage());
-                tv_err_msg.setText(t.getMessage());
-                layout_loader.setVisibility(View.GONE);
-                layout_success.setVisibility(View.GONE);
-                layout_failed.setVisibility(View.VISIBLE);
-                isSuccess = false;
-                invalidateOptionsMenu();
-            }
-        });
-
+            });
+        } else {
+            String no_inet = "No Internet Connection";
+            tv_err_msg.setText(no_inet);
+            layout_loader.setVisibility(View.GONE);
+            layout_success.setVisibility(View.GONE);
+            layout_failed.setVisibility(View.VISIBLE);
+            isSuccess = false;
+            invalidateOptionsMenu();
+        }
     }
 
-    private void addToLisDoas(ArrayList<Doa> doas) {
+    private void addToListDoas(ArrayList<Doa> doas) {
         this.doas = doas;
         dailyDoaAdapter = new DailyDoaAdapter(this.doas, this);
         rv_daily_doa.setAdapter(dailyDoaAdapter);
@@ -167,5 +198,21 @@ public class DoaMenuActivity extends AppCompatActivity implements DailyDoaAdapte
             }
         });
         return true;
+    }
+
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
+    }
+
+    private boolean isCanAccessInternet() {
+        try {
+            String command = "ping -c 1 google.com";
+            return Runtime.getRuntime().exec(command).waitFor() == 0;
+
+        } catch (Exception e) {
+            Log.d(TAG, "isCanAccessInternet: " + e.getMessage());
+        }
+        return false;
     }
 }
