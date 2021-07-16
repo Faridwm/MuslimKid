@@ -27,7 +27,6 @@ import com.fwmubarok.muslimkid.Model.Doa;
 import com.fwmubarok.muslimkid.MyInterface.MuslimApiInterface;
 import com.fwmubarok.muslimkid.REST.ApiClient;
 
-import java.net.InetAddress;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -80,11 +79,6 @@ public class DoaMenuActivity extends AppCompatActivity implements DailyDoaAdapte
         btn_refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                layout_loader.setVisibility(View.VISIBLE);
-//                layout_success.setVisibility(View.GONE);
-//                layout_failed.setVisibility(View.GONE);
-////                isSuccess = false;
-//                getDailyDoa();
                 finish();
                 overridePendingTransition(0, 0);
                 startActivity(getIntent());
