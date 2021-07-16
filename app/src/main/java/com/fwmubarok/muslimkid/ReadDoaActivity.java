@@ -106,25 +106,26 @@ public class ReadDoaActivity extends AppCompatActivity {
             btn_next.setAlpha(1.0f);
         }
 
-        if (position % 2 == 0) {
-            tv_title.setTextColor(ContextCompat.getColor(context, R.color.primary_orange));
-            tv_latin.setTextColor(ContextCompat.getColor(context, R.color.primary_orange));
-            tv_trans.setTextColor(ContextCompat.getColor(context, R.color.primary_orange));
-            cv_arabic.setCardBackgroundColor(ContextCompat.getColor(context, R.color.primary_orange));
-            cv_artinya.setCardBackgroundColor(ContextCompat.getColor(context, R.color.primary_orange));
-            btn_next.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.primary_orange));
-            btn_prev.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.primary_orange));
-            actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.primary_orange)));
+        int color = R.color.disable_gray;
+
+        if (position % 4 == 0) {
+            color = R.color.primary_red;
+        } else if (position % 4 == 1){
+            color = R.color.primary_blue;
+        } else if (position % 4 == 2){
+            color = R.color.primary_green;
         } else {
-            tv_title.setTextColor(ContextCompat.getColor(context, R.color.primary_blue));
-            tv_latin.setTextColor(ContextCompat.getColor(context, R.color.primary_blue));
-            tv_trans.setTextColor(ContextCompat.getColor(context, R.color.primary_blue));
-            cv_arabic.setCardBackgroundColor(ContextCompat.getColor(context, R.color.primary_blue));
-            cv_artinya.setCardBackgroundColor(ContextCompat.getColor(context, R.color.primary_blue));
-            btn_next.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.primary_blue));
-            btn_prev.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.primary_blue));
-            actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.primary_blue)));
+            color = R.color.primary_orange;
         }
+
+        tv_title.setTextColor(ContextCompat.getColor(context, color));
+        tv_latin.setTextColor(ContextCompat.getColor(context, color));
+        tv_trans.setTextColor(ContextCompat.getColor(context, color));
+        cv_arabic.setCardBackgroundColor(ContextCompat.getColor(context, color));
+        cv_artinya.setCardBackgroundColor(ContextCompat.getColor(context, color));
+        btn_next.setBackgroundTintList(ContextCompat.getColorStateList(context, color));
+        btn_prev.setBackgroundTintList(ContextCompat.getColorStateList(context, color));
+        actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(color)));
 
         String latin = "\"" + doa.getInLatin() + "\"";
         tv_title.setText(doa.getTitle());

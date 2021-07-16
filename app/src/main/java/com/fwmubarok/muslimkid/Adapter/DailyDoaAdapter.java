@@ -53,10 +53,16 @@ public class DailyDoaAdapter extends RecyclerView.Adapter<DailyDoaAdapter.ListVi
             }
         });
 
-        if (position % 2 == 0) {
+        if (position % 4 == 0) {
+            holder.tv_judul_doa.setBackgroundColor(ContextCompat.getColor(holder.tv_judul_doa.getContext(), R.color.primary_red));
+        } else if (position % 4 == 1) {
+            holder.tv_judul_doa.setBackgroundColor(ContextCompat.getColor(holder.tv_judul_doa.getContext(), R.color.primary_blue));
+        } else if (position % 4 == 2) {
+            holder.tv_judul_doa.setBackgroundColor(ContextCompat.getColor(holder.tv_judul_doa.getContext(), R.color.primary_green));
+        } else if (position % 4 == 3) {
             holder.tv_judul_doa.setBackgroundColor(ContextCompat.getColor(holder.tv_judul_doa.getContext(), R.color.primary_orange));
         } else {
-            holder.tv_judul_doa.setBackgroundColor(ContextCompat.getColor(holder.tv_judul_doa.getContext(), R.color.primary_blue));
+            holder.tv_judul_doa.setBackgroundColor(ContextCompat.getColor(holder.tv_judul_doa.getContext(), R.color.disable_gray));
         }
     }
 

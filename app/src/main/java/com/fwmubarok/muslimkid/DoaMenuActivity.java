@@ -102,7 +102,7 @@ public class DoaMenuActivity extends AppCompatActivity implements DailyDoaAdapte
 
     private void getDailyDoa() {
 //        Log.d(TAG, "getDailyDoa: " + isCanAccessInternet());
-        if (isNetworkConnected() && isCanAccessInternet()) {
+        if (true) {
             Call<DailyDoa> call = muslimApiInterface.getDailyDoa();
             call.enqueue(new Callback<DailyDoa>() {
                 @Override
