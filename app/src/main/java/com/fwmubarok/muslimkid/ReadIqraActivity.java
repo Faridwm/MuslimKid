@@ -39,9 +39,6 @@ public class ReadIqraActivity extends AppCompatActivity {
     private ParcelFileDescriptor parcelFileDescriptor;
     private Window window;
 
-    //Toolbar
-    private Toolbar r_iqra_toolbar;
-
     //Text View
     private TextView tv_iqra_num, tv_page_num;
 

@@ -31,20 +31,20 @@ public class MainActivity extends AppCompatActivity {
         btn_iqra = findViewById(R.id.btn_act_iqra);
         btn_doa = findViewById(R.id.btn_act_doa);
 
-        btn_iqra.setOnClickListener(new View.OnClickListener() {
+        View.OnClickListener clickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, IqraMenuActivity.class);
-                startActivity(intent);
+                if (v == btn_iqra) {
+                    Intent intent = new Intent(context, IqraMenuActivity.class);
+                    startActivity(intent);
+                } else if (v == btn_doa) {
+                    Intent intent =  new Intent(context, DoaMenuActivity.class);
+                    startActivity(intent);
+                }
             }
-        });
+        };
 
-        btn_doa.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent =  new Intent(context, DoaMenuActivity.class);
-                startActivity(intent);
-            }
-        });
+        btn_iqra.setOnClickListener(clickListener);
+        btn_doa.setOnClickListener(clickListener);
     }
 }
