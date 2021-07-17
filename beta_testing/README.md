@@ -7,6 +7,7 @@ Jum'at, 16 Juli 2021
 Yang melakukan Alpha Testing pada aplikasi ini adalah:
 - Nama: Rahmiatun Nisa
 - Umur: 35 Tahun.
+- Pekerjaan: Ibu Rumah Tangga.
 
 ## Reason
 Rahmiatun Nisa atau yang akrab dipanggil ka Nisa adalah seorang ibu rumah tangga yang memiliki 4 orang anak. Salah satu anak ka Nisa yang bernama Reynanda yang berusia 5 tahun dan masih duduk di taman kanak-kanak dan dia juga sedang belajar membaca Al-Quran. 
