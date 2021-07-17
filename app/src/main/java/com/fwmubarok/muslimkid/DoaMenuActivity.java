@@ -27,6 +27,7 @@ import com.fwmubarok.muslimkid.Model.Doa;
 import com.fwmubarok.muslimkid.MyInterface.MuslimApiInterface;
 import com.fwmubarok.muslimkid.REST.ApiClient;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -102,7 +103,8 @@ public class DoaMenuActivity extends AppCompatActivity implements DailyDoaAdapte
 
     private void getDailyDoa() {
 //        Log.d(TAG, "getDailyDoa: " + isCanAccessInternet());
-        if (true) {
+//        if (true) {
+        if (isNetworkConnected()) {
             Call<DailyDoa> call = muslimApiInterface.getDailyDoa();
             call.enqueue(new Callback<DailyDoa>() {
                 @Override
@@ -187,7 +189,9 @@ public class DoaMenuActivity extends AppCompatActivity implements DailyDoaAdapte
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                dailyDoaAdapter.getFilter().filter(newText);
+                if (dailyDoaAdapter != null) {
+                    dailyDoaAdapter.getFilter().filter(newText);
+                }
                 return true;
             }
         });
@@ -204,7 +208,7 @@ public class DoaMenuActivity extends AppCompatActivity implements DailyDoaAdapte
             String command = "ping -c 1 google.com";
             return Runtime.getRuntime().exec(command).waitFor() == 0;
 
-        } catch (Exception e) {
+        } catch (IOException | InterruptedException e) {
             Log.d(TAG, "isCanAccessInternet: " + e.getMessage());
         }
         return false;
